@@ -5,8 +5,6 @@ services:
       container_name: whois-client-prod
       build:
         context: .
-        build:
-          context: .
-          dockerfile: Dockerfile.prod
-        ports:
-          - '80:80'
+        dockerfile: Dockerfile.prod
+      ports:
+        - '80:80'
