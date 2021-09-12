@@ -40,6 +40,8 @@ class App extends React.Component<IProps, IState> {
   }
 
   searchClick(event: any) {
+    console.log(process.env)
+
     if (this.search.props.value == '') {
       this.setState({
         whoisRecord: this.state.whoisRecord,
@@ -55,7 +57,7 @@ class App extends React.Component<IProps, IState> {
       isLoading: true,
       isIP: this.state.isIP
     })
-    http.get(`http://localhost:3030/domain?domain=${event}`, res => {
+    http.get(`${process.env.REACT_APP_SERVER_LOCATION}/domain?domain=${event}`, res => {
       let data = ''
 
       res.on('data', chunk => {
@@ -72,6 +74,7 @@ class App extends React.Component<IProps, IState> {
         })
       } else {
         res.on('end', () => {
+          console.log(data);
           this.setState({
             whoisRecord: JSON.parse(data).isIP 
               ? undefined
@@ -111,6 +114,9 @@ class App extends React.Component<IProps, IState> {
               <Row>
                 <Col offset={8} span={8}>
                   {this.search}
+                </Col>
+                <Col offset={2} span={2}>
+                  <Button style={{width: '100%'}}>Download Raw</Button>
                 </Col>
               </Row>
               {this.state.errorMessage != undefined &&
