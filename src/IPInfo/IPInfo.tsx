@@ -1,10 +1,12 @@
 import { Descriptions, Empty, Space } from 'antd';
-import { RegistryData } from '../WhoisModel/RegistryData';
 import { IPRecord } from '../WhoisModel/IPRecord';
 import { SubRecord } from '../WhoisModel/SubRecord';
-import '../WhoisModel/RegistryData'
-import React from 'react';
 
+/**
+ * IP Info component
+ * 
+ * @param props Accepts an object with an IPRecord object and a SubRecord object
+ */
 function IPInfo(props: { registryData?: IPRecord, subRecord: SubRecord }) {
     return (
         <div>

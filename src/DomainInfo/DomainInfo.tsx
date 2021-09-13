@@ -1,8 +1,11 @@
 import { Descriptions, Empty } from 'antd';
 import { RegistryData } from '../WhoisModel/RegistryData';
-import '../WhoisModel/RegistryData'
-import React from 'react';
 
+/**
+ * Domain Info component
+ * 
+ * @param props Accepts an object with a RegistryData object
+ */
 function DomainInfo(props: { registryData: RegistryData }) {
     const nameserverList = props.registryData.nameServers?.hostNames?.map((emp) => <span>{emp}<br/></span>)
 

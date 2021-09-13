@@ -1,6 +1,9 @@
 import { AuditRecord } from "./AuditRecord";
 import { ContactRecord } from "./ContactRecord";
 
+/** 
+ * SubRecord object
+ */
 export interface SubRecord {
     audit?: AuditRecord
     createdDate?: Date;

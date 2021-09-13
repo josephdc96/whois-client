@@ -1,6 +1,11 @@
 import { ContactRecord } from '../WhoisModel/ContactRecord';
 import { Descriptions } from 'antd'
 
+/**
+ * Contact Info component
+ * 
+ * @param props Accepts an object with a ContactRecord object
+ */
 function ContactInfo(props: {contactInfo: ContactRecord}) {
     return(
         <div>

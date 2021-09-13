@@ -1,3 +1,6 @@
+/**
+ * Contect Record object
+ */
 export interface ContactRecord {
     name?: string;
     organization?: string;
