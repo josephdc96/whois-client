@@ -1,7 +1,12 @@
-import { ResultProps } from 'antd';
 import { IPRecord } from './IPRecord';
 import { WhoisRecord } from './WhoisRecord';
 
+/**
+ * Converts a domain JSON object from the server into a valid WhoisRecord object
+ * 
+ * @param result The JSON object from the API
+ * @returns A valid WhoisRecord objects
+ */
 function ConvertToModel(result: any): WhoisRecord {
     let record: WhoisRecord = {
         domainName: result.domainName,
@@ -42,18 +47,27 @@ function ConvertToModel(result: any): WhoisRecord {
         estimatedDomainAge: result.estimatedDomainAge,
         registrant: result.registrant,
         administrativeContact: result.administrativeContact,
-        technicalContact: result.technicalContact
+        technicalContact: result.technicalContact,
+        rawText: result.rawText
     }
-
     return record;
 }
 
+/**
+ * Converts an IP JSON object from the server into a valid IPRecord object
+ * 
+ * @param result The JSON object from the API
+ * @returns A valud IPRecord object
+ */
 function ConvertToIPModel(result: any): IPRecord {
     let record: IPRecord = {
-        subRecords: []
+        subRecords: [],
+        rawText: ''
     };
 
     const sRecords: any[] = result.subRecords as any[]
+    
+    // If an IP address has a single organization associated
     if (sRecords == undefined) {
         record.subRecords.push({
             createdDate: result.registryData.createdDate != undefined ? new Date(result.registryData.createdDate) : undefined,
@@ -66,7 +80,10 @@ function ConvertToIPModel(result: any): IPRecord {
             netRange: result.registryData.customField1Value,
             netName: result.registryData.customField2Value  
         })
-    } else {
+        record.rawText += `\n${result.registryData.rawText}`
+    } 
+    // If an IP address has multiple organizations associated
+    else {
         sRecords.forEach(r => {
             record.subRecords.push({
                 createdDate: new Date(r.createdDate),
@@ -79,6 +96,7 @@ function ConvertToIPModel(result: any): IPRecord {
                 netRange: r.customField1Value,
                 netName: r.customField2Value
             })
+            record.rawText += `\n${r.rawText}`
         });
     }
     return record;

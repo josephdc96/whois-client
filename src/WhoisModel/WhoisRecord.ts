@@ -3,6 +3,9 @@ import { ContactRecord } from "./ContactRecord";
 import { NameServers } from "./NameServersRecord";
 import { RegistryData } from "./RegistryData";
 
+/**
+ * WhoIS record object
+ */
 export interface WhoisRecord {
     domainName?: string;
     nameServers?: NameServers;
@@ -23,4 +26,5 @@ export interface WhoisRecord {
     registrant?: ContactRecord;
     administrativeContact?: ContactRecord;
     technicalContact?: ContactRecord;
+    rawText?: string;
 }

@@ -1,6 +1,9 @@
 import { NameServers } from './NameServersRecord'
 import { AuditRecord } from './AuditRecord'
  
+/**
+ * Registry Data object
+ */
 export interface RegistryData {
     createdDate?: Date;
     updatedDate?: Date;
