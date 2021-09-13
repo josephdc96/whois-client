@@ -49,7 +49,6 @@ function ConvertToModel(result: any): WhoisRecord {
 }
 
 function ConvertToIPModel(result: any): IPRecord {
-    console.log(result);
     let record: IPRecord = {
         subRecords: []
     };
@@ -69,7 +68,6 @@ function ConvertToIPModel(result: any): IPRecord {
         })
     } else {
         sRecords.forEach(r => {
-            console.log(r);
             record.subRecords.push({
                 createdDate: new Date(r.createdDate),
                 updatedDate: new Date(r.updatedDate),

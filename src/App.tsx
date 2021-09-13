@@ -40,7 +40,6 @@ class App extends React.Component<IProps, IState> {
   }
 
   searchClick(event: any) {
-    console.log(process.env)
 
     if (this.search.props.value == '') {
       this.setState({
@@ -74,7 +73,6 @@ class App extends React.Component<IProps, IState> {
         })
       } else {
         res.on('end', () => {
-          console.log(data);
           this.setState({
             whoisRecord: JSON.parse(data).isIP 
               ? undefined
